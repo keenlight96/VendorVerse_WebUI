@@ -608,10 +608,10 @@
                             <div class="ps-form__content">
                                 <h5>Log In Your Account</h5>
                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Username or email address">
+                                    <input class="form-control" type="text" placeholder="Username">
                                 </div>
                                 <div class="form-group form-forgot">
-                                    <input class="form-control" type="text" placeholder="Password"><a href="#">Forgot?</a>
+                                    <input class="form-control" type="password" placeholder="Password"><a href="#">Forgot?</a>
                                 </div>
                                 <div class="form-group">
                                     <div class="ps-checkbox">
@@ -637,13 +637,22 @@
                             <div class="ps-form__content">
                                 <h5>Register An Account</h5>
                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Username or email address">
+                                    <input class="form-control" id="username" type="text" placeholder="Username">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Password">
+                                    <input class="form-control" id="password" type="password" placeholder="Password">
+                                </div>
+                                <div class="form-group">Role
+                                    <select id="role">
+                                        <option value="1">Vendor</option>
+                                        <option value="2">Customer</option>
+                                    </select>
+                                </div>
+                                <div id="message">
+
                                 </div>
                                 <div class="form-group submtit">
-                                    <button class="ps-btn ps-btn--fullwidth">Login</button>
+                                    <button type="button" class="ps-btn ps-btn--fullwidth" onclick="register()">Register</button>
                                 </div>
                             </div>
                             <div class="ps-form__footer">
@@ -1145,8 +1154,10 @@
     <script src="plugins/sticky-sidebar/dist/sticky-sidebar.min.js"></script>
     <script src="plugins/select2/dist/js/select2.full.min.js"></script>
     <script src="plugins/gmap3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <!-- custom scripts-->
     <script src="js/main.js"></script>
+    <script src="js/login-register.js"></script>
 </body>
 
 
