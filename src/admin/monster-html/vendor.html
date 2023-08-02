@@ -25,7 +25,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body onload="getAllVendor()">
 <!-- ============================================================== -->
 <!-- Preloader - style you can find in spinners.css -->
 <!-- ============================================================== -->
@@ -127,10 +127,6 @@
                 <ul id="sidebarnav">
                     <!-- User Profile-->
                     <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                                href="index.html" aria-expanded="false"><i
-                            class="me-3 far fa-clock fa-fw"
-                            aria-hidden="true"></i><span class="hide-menu">Dashboard</span></a></li>
-                    <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
                                                 href="vendor.html" aria-expanded="false">
                         <i class="me-3 fa fa-user" aria-hidden="true"></i><span
                             class="hide-menu">Vendor</span></a>
@@ -183,6 +179,10 @@
         <!-- ============================================================== -->
         <div class="container-fluid">
             <!-- ============================================================== -->
+            <!-- Button to Open the Modal Create-->
+            <button type="button" class="btn btn-primary" onclick="getStatusCreate()" data-bs-toggle="modal" data-bs-target="#myModalCreate">
+                Create
+            </button>
             <!-- Start Page Content -->
             <!-- ============================================================== -->
             <div class="row">
@@ -190,8 +190,7 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Basic Table</h4>
-                            <h6 class="card-subtitle">Add class <code>.table</code></h6>
+                            <h4 class="card-title">Vendor</h4>
                             <div class="table-responsive">
                                 <table class="table user-table no-wrap">
                                     <thead>
@@ -210,29 +209,10 @@
                                         <th class="border-top-0">Delete</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Deshmukh</td>
-                                        <td>Prohaska</td>
-                                        <td>@Genelia</td>
-                                        <td>@Genelia</td>
-                                        <td>@Genelia</td>
-                                        <td>@Genelia</td>
-                                        <td>@Genelia</td>
-                                        <td>
-                                            <button class="btn  btn-success">Product</button>
-                                        </td>
-                                        <td>
-                                            <button class="btn  btn-success">Bill</button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-info">Edit</button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger">Delete</button>
-                                        </td>
-                                    </tr>
+                                    <tbody id="account-vendor">
+
+<!--                          js          -->
+
                                     </tbody>
                                 </table>
                             </div>
@@ -256,19 +236,15 @@
         <!-- ============================================================== -->
         <!-- ============================================================== -->
 
-        <!-- Button to Open the Modal Create-->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModalCreate">
-            Open myModalCreate
-        </button>
 
-        <!-- The Modal -->
+        <!-- The Modal Create-->
         <div class="modal" id="myModalCreate">
             <div class="modal-dialog">
                 <div class="modal-content">
 
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h4 class="modal-title">Modal Heading</h4>
+                        <h4 class="modal-title">Create Vendor</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
 
@@ -276,54 +252,117 @@
                     <div class="modal-body">
                         <form>
                             <div class="mb-3 mt-3">
-                                <label for="username" class="form-label">Username:</label>
-                                <input type="text" class="form-control" id="username" placeholder="Enter Username"
+                                <label class="form-label">Username:</label>
+                                <input type="text" class="form-control" id="usernameC" placeholder="Enter Username"
                                        name="username">
                             </div>
                             <div class="mb-3 mt-3">
-                                <label for="password" class="form-label">Password:</label>
-                                <input type="text" class="form-control" id="password" placeholder="Enter Password"
+                                <label class="form-label">Password:</label>
+                                <input type="text" class="form-control" id="passwordC" placeholder="Enter Password"
                                        name="password">
                             </div>
                             <div class="mb-3 mt-3">
-                                <label for="avatar" class="form-label">Avatar:</label>
-                                <input type="text" class="form-control" id="avatar" placeholder="Enter Avatar	"
+                                <label class="form-label">Avatar:</label>
+                                <input type="text" class="form-control" id="avatarC" placeholder="Enter Avatar	"
                                        name="avatar">
                             </div>
                             <div class="mb-3 mt-3">
-                                <label for="birthday" class="form-label">Birthday:</label>
-                                <input type="text" class="form-control" id="birthday" placeholder="Enter Birthday"
+                                <label  class="form-label">Birthday:</label>
+                                <input type="text" class="form-control" id="birthdayC" placeholder="Enter Birthday"
                                        name="birthday">
                             </div>
                             <div class="mb-3 mt-3">
-                                <label for="phoneNumber" class="form-label">Phone Number:</label>
-                                <input type="text" class="form-control" id="phoneNumber"
+                                <label  class="form-label">Phone Number:</label>
+                                <input type="text" class="form-control" id="phoneNumberC"
                                        placeholder="Enter Phone Number"
                                        name="phoneNumber">
                             </div>
                             <div class="mb-3 mt-3">
                                 <label class="form-label">Role:</label>
-                                <select id="">
-                                    <option>ADMIN</option>
-                                    <option>VENDOR</option>
-                                    <option>CUSTOMER</option>
+                                <select id="idRoleCreate">
+                                    <option value="2">VENDOR</option>
                                 </select>
                             </div>
                             <div class="mb-3 mt-3">
                                 <label class="form-label">Status:</label>
-                                <select id="">
-                                    <option>ADMIN</option>
-                                    <option>VENDOR</option>
-                                    <option>CUSTOMER</option>
+                                <select id="idStatusCreate">
+
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-primary" onclick="createVendor()" ata-bs-dismiss="modal">Add</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                    <!-- Modal footer -->
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- The Modal Edit-->
+        <div class="modal" id="myModalEdit">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Vendor</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3 mt-3">
+                                <input type="text" class="form-control" id="idE" placeholder="Enter Username"
+                                       name="id">
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label  class="form-label">Username:</label>
+                                <input type="text" class="form-control" id="usernameE" placeholder="Enter Username"
+                                       name="username">
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label  class="form-label">Password:</label>
+                                <input type="text" class="form-control" id="passwordE" placeholder="Enter Password"
+                                       name="password">
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Avatar:</label>
+                                <input type="text" class="form-control" id="avatarE" placeholder="Enter Avatar	"
+                                       name="avatar">
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label  class="form-label">Birthday:</label>
+                                <input type="text" class="form-control" id="birthdayE" placeholder="Enter Birthday"
+                                       name="birthday">
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Phone Number:</label>
+                                <input type="text" class="form-control" id="phoneNumberE"
+                                       placeholder="Enter Phone Number"
+                                       name="phoneNumber">
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Role:</label>
+                                <select id="idRole">
+                                    <option value="2">VENDOR</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Status:</label>
+                                <select id="idStatusEdit">
+
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="editVendor()" data-bs-dismiss="modal">Update</button>
                         </form>
                     </div>
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     </div>
 
                 </div>
@@ -331,95 +370,51 @@
         </div>
 
 
-        <!-- Button to Open the Modal Edit-->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-            Open modal
-        </button>
-
-        <!-- The Modal -->
-        <div class="modal" id="myModal">
-            <div class="modal-dialog">
+        <!-- The Modal Product-->
+        <div class="modal" id="myModalProduct">
+            <div class="modal-dialog modal-xl">
                 <div class="modal-content">
 
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h4 class="modal-title">Modal Heading</h4>
+                        <h4 class="modal-title">Product of ${}</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
 
                     <!-- Modal body -->
                     <div class="modal-body">
-                        Modal body..
+                        <div class="container mt-3">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     </div>
 
                 </div>
             </div>
         </div>
 
-        <!-- Button to Open the Modal Product-->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-            Open modal
-        </button>
 
-        <!-- The Modal -->
-        <div class="modal" id="myModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
 
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Modal Heading</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        Modal body..
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <!-- Button to Open the Modal Bill-->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-            Open modal
-        </button>
-
-        <!-- The Modal -->
-        <div class="modal" id="myModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Modal Heading</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        Modal body..
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
 
         <!-- footer -->
         <!-- ============================================================== -->
@@ -450,6 +445,9 @@
 <script src="js/sidebarmenu.js"></script>
 <!--Custom JavaScript -->
 <script src="js/custom.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="js/vendor.js"></script>
+
 </body>
 
 </html>
