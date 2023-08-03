@@ -28,3 +28,35 @@ function register() {
     })
 
 }
+
+function login() {
+    let username = $("#nameLog").val();
+    let password = $("#passLog").val();
+
+    let account = {
+        username: username,
+        password: password
+    };
+    let str = `<p>Account isn't exist</p>`
+    console.log(account)
+    $.ajax({
+        type: "Post",
+        contentType: "application/json",
+        url: "http://localhost:8080/login",
+        data: JSON.stringify(account),
+        success: function (data) {
+            console.log(data)
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("user", JSON.stringify(data));
+            if (data.role.name === "ROLE_VENDOR") {
+                location.href = "vendor-dashboard-free.html"
+            } else if (data.role.name === "ROLE_CUSTOMER") {
+                location.href = "home-marketplace.html"
+            }
+        },
+        error: function (err) {
+            document.getElementById("message1").innerHTML = str;
+        }
+    })
+
+}

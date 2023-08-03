@@ -133,7 +133,7 @@
                     </li>
                     <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
                                                 href="customer.html" aria-expanded="false"><i class="me-3 fa fa-table"
-                                                                                            aria-hidden="true"></i><span
+                                                                                              aria-hidden="true"></i><span
                             class="hide-menu">Customer</span></a></li>
                     <li class="text-center p-20 upgrade-btn">
                         <a href="/login"
@@ -159,12 +159,12 @@
         <div class="page-breadcrumb">
             <div class="row align-items-center">
                 <div class="col-md-6 col-8 align-self-center">
-                    <h3 class="page-title mb-0 p-0">Table</h3>
+                    <h3 class="page-title mb-0 p-0">Bill Of </h3>
                     <div class="d-flex align-items-center">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Table</li>
+                                <li class="breadcrumb-item active" aria-current="page">Bill</li>
                             </ol>
                         </nav>
                     </div>
@@ -175,147 +175,75 @@
         <!-- End Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
         <!-- ============================================================== -->
-        <!-- Button to Open the Modal Create-->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModalCreate">
-            Create
-        </button>
         <!-- Container fluid  -->
         <!-- ============================================================== -->
         <div class="container-fluid">
             <!-- ============================================================== -->
-            <!-- Start Page Content -->
-            <!-- ============================================================== -->
-            <div class="row">
-                <!-- column -->
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Customer</h4>
-                            <h6 class="card-subtitle">Add class <code>.table</code></h6>
-                            <div class="table-responsive">
-                                <table class="table user-table no-wrap">
-                                    <thead>
-                                    <tr>
-                                        <th class="border-top-0">ID</th>
-                                        <th class="border-top-0">Username</th>
-                                        <th class="border-top-0">Password</th>
-                                        <th class="border-top-0">Avatar</th>
-                                        <th class="border-top-0">Birthday</th>
-                                        <th class="border-top-0">Phone Number</th>
-                                        <th class="border-top-0">Role</th>
-                                        <th class="border-top-0">Status</th>
-                                        <th class="border-top-0">Bill</th>
-                                        <th class="border-top-0">Edit</th>
-                                        <th class="border-top-0">Delete</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Deshmukh</td>
-                                        <td>Prohaska</td>
-                                        <td>@Genelia</td>
-                                        <td>@Genelia</td>
-                                        <td>@Genelia</td>
-                                        <td>@Genelia</td>
-                                        <td>@Genelia</td>
-                                        <td>
-                                            <button class="btn btn-success">Bill</button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#myModalEdit">Edit</button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ============================================================== -->
-            <!-- End PAge Content -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Right sidebar -->
-            <!-- ============================================================== -->
-            <!-- .right-sidebar -->
-            <!-- ============================================================== -->
-            <!-- End Right sidebar -->
-            <!-- ============================================================== -->
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>ID Bill:</th>
+                    <th>Name Vendor:</th>
+                    <th>Phone Number Vendor:</th>
+                    <th>
+                        Product
+                    </th>
+                    <th>Total</th>
+                    <th>Status</th>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>aa</td>
+                    <td>aa</td>
+                    <td>aa</td>
+                    <td>
+                        <table class="table">
+                            <tr>
+                                <th>Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                            <tr>
+                                <td>aa</td>
+                                <td>aa</td>
+                                <td>aa</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>aa</td>
+                    <td>aa</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
         <!-- ============================================================== -->
-        <!-- End Container fluid  -->
+        <!-- End PAge Content -->
         <!-- ============================================================== -->
         <!-- ============================================================== -->
-
-
-
-        <!-- The Modal -->
-        <div class="modal" id="myModalCreate">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Modal Heading</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        Modal body..
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <!-- The Modal -->
-        <div class="modal" id="myModalEdit">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Modal Heading</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        Modal body..
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <!-- footer -->
+        <!-- Right sidebar -->
         <!-- ============================================================== -->
-        <footer class="footer text-center">
-            © 2021 Monster Admin by <a href="https://www.wrappixel.com/">wrappixel.com</a>
-        </footer>
+        <!-- .right-sidebar -->
         <!-- ============================================================== -->
-        <!-- End footer -->
+        <!-- End Right sidebar -->
         <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
-    <!-- End Page wrapper  -->
+    <!-- End Container fluid  -->
     <!-- ============================================================== -->
+    <!-- ============================================================== -->
+
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center">
+        © 2021 Monster Admin by <a href="https://www.wrappixel.com/">wrappixel.com</a>
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Page wrapper  -->
+<!-- ============================================================== -->
 </div>
 <!-- ============================================================== -->
 <!-- End Wrapper -->
