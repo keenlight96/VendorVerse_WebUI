@@ -46,7 +46,7 @@ function login() {
         data: JSON.stringify(account),
         success: function (data) {
             console.log(data)
-            localStorage.setItem("token", data.token);
+            localStorage.setItem("token", "Bearer " + data.token);
             localStorage.setItem("user", JSON.stringify(data));
             if (data.role.name === "ROLE_VENDOR") {
                 location.href = "vendor-dashboard-free.html"
