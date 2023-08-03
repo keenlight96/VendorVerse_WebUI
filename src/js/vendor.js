@@ -103,3 +103,88 @@ function createImageForProduct(product) {
         }
     })
 }
+
+function getAllVendorOrders() {
+    $.ajax({
+        type: "GET",
+        headers : {
+            "Authorization" : localStorage.getItem("token"),
+            "Accept" : "application/json",
+            "Content-Type" : "application/json"
+        },
+        url : "http://localhost:8080/bill/vendor",
+        success : function (data) {
+            displayAllVendorOrders(data)
+        },
+        error : function (error) {
+            console.log(error);
+        }
+    })
+}
+
+function displayAllVendorOrders(bills) {
+    let str = "";
+    for (const bill of bills) {
+        if (bill.status.id != 1) {
+            str += `
+            <tr>
+                <td>${bill.id}</td>
+                <td>${bill.date}</td>
+                <td>${bill.customer.username}</td>
+                <td>$ ${bill.total}</td>
+        `;
+            if (bill.status.id == 2) {
+                str += `<td><a href="#" onclick="showInfoInModal(${bill.id})" data-toggle="modal" data-target="#myModal">${bill.status.name}</a></td>`;
+            } else {
+                str += `<td><a style="pointer-events: none; cursor: default" href="#">${bill.status.name}</a></td>`;
+            }
+
+            str += `
+                <td><a href="#">View Detail</a></td>
+            </tr>
+        `;
+        }
+    }
+    $("#vendor-orders").html(str);
+}
+function showInfoInModal(billId) {
+    $("#actionBillId").val(billId);
+}
+function acceptOrder() {
+    let billId = $("#actionBillId").val();
+    console.log(billId)
+    $.ajax({
+        type: "POST",
+        headers : {
+            "Authorization" : localStorage.getItem("token"),
+            "Accept" : "application/json",
+            "Content-Type" : "application/json"
+        },
+        url : "http://localhost:8080/bill/vendor/accept/" + billId,
+        success : function () {
+            getAllVendorOrders()
+        },
+        error : function (error) {
+            console.log(error);
+        }
+    })
+}
+
+function rejectOrder() {
+    let billId = $("#actionBillId").val();
+    $.ajax({
+        type: "POST",
+        headers : {
+            "Authorization" : localStorage.getItem("token"),
+            "Accept" : "application/json",
+            "Content-Type" : "application/json"
+        },
+        url : "http://localhost:8080/bill/vendor/reject/" + billId,
+        success : function () {
+            getAllVendorOrders()
+        },
+        error : function (error) {
+            console.log(error);
+        }
+    })
+}
