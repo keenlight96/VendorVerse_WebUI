@@ -43,7 +43,6 @@ function getBillDetailByBill() {
         url: "http://localhost:8080/billDetail/getByBill",
         data: JSON.stringify(bill),
         success: function (data) {
-            console.log(data)
             showBill(data)
         },
         error: function (err) {
