@@ -1,4 +1,4 @@
-function getAllAccountVendor() {
+function getAllCategory() {
     $.ajax({
         type: "GET",
         headers: {
@@ -82,7 +82,7 @@ function createVendor() {
         url: "http://localhost:8080/account",
         data: JSON.stringify(obj),
         success: function () {
-            getAllAccountVendor()
+            getAllCategory()
         }
     })
 }
@@ -143,7 +143,7 @@ function editVendor() {
         url: `http://localhost:8080/account/edit`,
         data: JSON.stringify(obj),
         success: function () {
-            getAllAccountVendor()
+            getAllCategory()
         }
     })
 }
@@ -164,7 +164,7 @@ function removeVendor(id) {
             url: `http://localhost:8080/account/delete`,
             data: JSON.stringify(account),
             success: function () {
-                getAllAccountVendor()
+                getAllCategory()
             }
         })
     }

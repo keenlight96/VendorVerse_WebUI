@@ -23,6 +23,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
 </head>
 
 <body onload="getAllCategory()">
@@ -163,12 +164,11 @@
         <div class="page-breadcrumb">
             <div class="row align-items-center">
                 <div class="col-md-6 col-8 align-self-center">
-                    <h3 class="page-title mb-0 p-0">Table</h3>
+                    <h3 class="page-title mb-0 p-0">Category</h3>
                     <div class="d-flex align-items-center">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Table</li>
                             </ol>
                         </nav>
                     </div>
@@ -180,66 +180,31 @@
         <!-- ============================================================== -->
         <!-- ============================================================== -->
         <!-- Container fluid  -->
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModalCreate">
+            Create
+        </button>
+
         <!-- ============================================================== -->
         <div class="container-fluid">
             <!-- ============================================================== -->
-            <!-- Button to Open the Modal Create-->
-            <button type="button" class="btn btn-primary" onclick="getStatusCreate()" data-bs-toggle="modal" data-bs-target="#myModalCreate">
-                Create
-            </button>
-            <!-- Start Page Content -->
-            <!-- ============================================================== -->
-            <div class="row">
-                <!-- column -->
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Vendor</h4>
-                            <div class="table-responsive">
-                                <table class="table user-table no-wrap">
-                                    <thead>
-                                    <tr>
-                                        <th class="border-top-0">ID</th>
-                                        <th class="border-top-0">Username</th>
-                                        <th class="border-top-0">Password</th>
-                                        <th class="border-top-0">Avatar</th>
-                                        <th class="border-top-0">Birthday</th>
-                                        <th class="border-top-0">Phone Number</th>
-                                        <th class="border-top-0">Role</th>
-                                        <th class="border-top-0">Status</th>
-                                        <th class="border-top-0">Product</th>
-                                        <th class="border-top-0">Bill</th>
-                                        <th class="border-top-0">Edit</th>
-                                        <th class="border-top-0">Delete</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="account-vendor">
-
-<!--                          js          -->
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ============================================================== -->
-            <!-- End PAge Content -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Right sidebar -->
-            <!-- ============================================================== -->
-            <!-- .right-sidebar -->
-            <!-- ============================================================== -->
-            <!-- End Right sidebar -->
-            <!-- ============================================================== -->
+            <table class="table" style="width: 50%; margin: auto; background-color: white">
+                <thead>
+                <tr>
+                    <th>Parent</th>
+                    <th>Child</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody id="show-category">
+                <!--                js-->
+                </tbody>
+            </table>
         </div>
         <!-- ============================================================== -->
-        <!-- End Container fluid  -->
+        <!-- End PAge Content -->
         <!-- ============================================================== -->
-        <!-- ============================================================== -->
-
 
         <!-- The Modal Create-->
         <div class="modal" id="myModalCreate">
@@ -248,7 +213,7 @@
 
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h4 class="modal-title">Create Vendor</h4>
+                        <h4 class="modal-title">Create Category</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
 
@@ -256,44 +221,18 @@
                     <div class="modal-body">
                         <form>
                             <div class="mb-3 mt-3">
-                                <label class="form-label">Username:</label>
-                                <input type="text" class="form-control" id="usernameC" placeholder="Enter Username"
-                                       name="username">
+                                <label class
+                                               ="form-label">parent:</label>
+                                <input type="text" class="form-control" id="parentC" placeholder="Enter parent"
+                                       name="parent">
                             </div>
-                            <div class="mb-3 mt-3">
-                                <label class="form-label">Password:</label>
-                                <input type="text" class="form-control" id="passwordC" placeholder="Enter Password"
-                                       name="password">
+                            <div class="mb-3">
+                                <label class="form-label">child:</label>
+                                <input type="text" class="form-control" id="childC" placeholder="Enter child"
+                                       name="child">
                             </div>
-                            <div class="mb-3 mt-3">
-                                <label class="form-label">Avatar:</label>
-                                <input type="text" class="form-control" id="avatarC" placeholder="Enter Avatar"
-                                       name="avatar">
-                            </div>
-                            <div class="mb-3 mt-3">
-                                <label  class="form-label">Birthday:</label>
-                                <input type="text" class="form-control" id="birthdayC" placeholder="Enter Birthday"
-                                       name="birthday">
-                            </div>
-                            <div class="mb-3 mt-3">
-                                <label  class="form-label">Phone Number:</label>
-                                <input type="text" class="form-control" id="phoneNumberC"
-                                       placeholder="Enter Phone Number"
-                                       name="phoneNumber">
-                            </div>
-                            <div class="mb-3 mt-3">
-                                <label class="form-label">Role:</label>
-                                <select id="idRoleCreate">
-                                    <option value="2">VENDOR</option>
-                                </select>
-                            </div>
-                            <div class="mb-3 mt-3">
-                                <label class="form-label">Status:</label>
-                                <select id="idStatusCreate">
-
-                                </select>
-                            </div>
-                            <button type="button" class="btn btn-primary" onclick="createVendor()" data-bs-dismiss="modal">Add</button>
+                            <button type="button" class="btn btn-primary" onclick="createCategory()" data-bs-dismiss="modal">Add
+                            </button>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -312,56 +251,30 @@
 
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h4 class="modal-title">Edit Vendor</h4>
+                        <h4 class="modal-title">Edit Category</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
 
                     <!-- Modal body -->
                     <div class="modal-body">
                         <form>
-                            <div class="mb-3 mt-3">
-                                <input type="hidden" class="form-control" id="idE" placeholder="Enter ID"
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="idE" placeholder="Enter ID"
                                        name="id">
                             </div>
                             <div class="mb-3 mt-3">
-                                <label  class="form-label">Username:</label>
-                                <input type="text" class="form-control" id="usernameE" placeholder="Enter Username"
-                                       name="username">
+                                <label class
+                                               ="form-label">parent:</label>
+                                <input type="text" class="form-control" id="parentE" placeholder="Enter parent"
+                                       name="parent">
                             </div>
-                            <div class="mb-3 mt-3">
-                                <label  class="form-label">Password:</label>
-                                <input type="text" class="form-control" id="passwordE" placeholder="Enter Password"
-                                       name="password">
+                            <div class="mb-3">
+                                <label class="form-label">child:</label>
+                                <input type="text" class="form-control" id="childE" placeholder="Enter child"
+                                       name="child">
                             </div>
-                            <div class="mb-3 mt-3">
-                                <label class="form-label">Avatar:</label>
-                                <input type="text" class="form-control" id="avatarE" placeholder="Enter Avatar	"
-                                       name="avatar">
-                            </div>
-                            <div class="mb-3 mt-3">
-                                <label  class="form-label">Birthday:</label>
-                                <input type="text" class="form-control" id="birthdayE" placeholder="Enter Birthday"
-                                       name="birthday">
-                            </div>
-                            <div class="mb-3 mt-3">
-                                <label class="form-label">Phone Number:</label>
-                                <input type="text" class="form-control" id="phoneNumberE"
-                                       placeholder="Enter Phone Number"
-                                       name="phoneNumber">
-                            </div>
-                            <div class="mb-3 mt-3">
-                                <label class="form-label">Role:</label>
-                                <select id="idRole">
-                                    <option value="2">VENDOR</option>
-                                </select>
-                            </div>
-                            <div class="mb-3 mt-3">
-                                <label class="form-label">Status:</label>
-                                <select id="idStatusEdit">
-
-                                </select>
-                            </div>
-                            <button type="button" class="btn btn-primary" onclick="editVendor()" data-bs-dismiss="modal">Update</button>
+                            <button type="button" class="btn btn-primary" onclick="editCategory()" data-bs-dismiss="modal">Update
+                            </button>
                         </form>
                     </div>
 
@@ -374,20 +287,31 @@
         </div>
 
 
-
-
-        <!-- footer -->
         <!-- ============================================================== -->
-        <footer class="footer text-center">
-            © 2021 Monster Admin by <a href="https://www.wrappixel.com/">wrappixel.com</a>
-        </footer>
+        <!-- Right sidebar -->
         <!-- ============================================================== -->
-        <!-- End footer -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
         <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
-    <!-- End Page wrapper  -->
+    <!-- End Container fluid  -->
     <!-- ============================================================== -->
+    <!-- ============================================================== -->
+
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center">
+        © 2021 Monster Admin by <a href="https://www.wrappixel.com/">wrappixel.com</a>
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Page wrapper  -->
+<!-- ============================================================== -->
 </div>
 <!-- ============================================================== -->
 <!-- End Wrapper -->
@@ -407,6 +331,7 @@
 <script src="js/custom.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="js/account.js"></script>
+<script src="js/category.js"></script>
 
 </body>
 
