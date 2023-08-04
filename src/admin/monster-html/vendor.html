@@ -25,7 +25,7 @@
     <![endif]-->
 </head>
 
-<body onload="getAllVendor()">
+<body onload="getAllAccountVendor()">
 <!-- ============================================================== -->
 <!-- Preloader - style you can find in spinners.css -->
 <!-- ============================================================== -->
@@ -289,7 +289,7 @@
 
                                 </select>
                             </div>
-                            <button type="button" class="btn btn-primary" onclick="createVendor()" ata-bs-dismiss="modal">Add</button>
+                            <button type="button" class="btn btn-primary" onclick="createVendor()" data-bs-dismiss="modal">Add</button>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -316,7 +316,7 @@
                     <div class="modal-body">
                         <form>
                             <div class="mb-3 mt-3">
-                                <input type="text" class="form-control" id="idE" placeholder="Enter Username"
+                                <input type="hidden" class="form-control" id="idE" placeholder="Enter ID"
                                        name="id">
                             </div>
                             <div class="mb-3 mt-3">
@@ -370,50 +370,6 @@
         </div>
 
 
-        <!-- The Modal Product-->
-        <div class="modal" id="myModalProduct">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Product of ${}</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <div class="container mt-3">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-
 
 
         <!-- footer -->
@@ -446,7 +402,7 @@
 <!--Custom JavaScript -->
 <script src="js/custom.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="js/vendor.js"></script>
+<script src="js/account.js"></script>
 
 </body>
 
