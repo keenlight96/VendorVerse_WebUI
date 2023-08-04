@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="css/home-photo.css">
 </head>
 
-<body>
+<body onload="showAccountLogin()">
     <header class="header header--photo" data-sticky="true">
         <div class="ps-logo"><img src="img/logo-photo.png" alt=""></div>
         <div class="header__content">
@@ -46,9 +46,12 @@
                     </select>
                 </div>
                 <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i>0</i></span></a></div>
-                <div class="ps-block--user-header">
-                    <div class="ps-block__left"><i class="icon-user"></i></div>
-                    <div class="ps-block__right"><a href="my-account.html">Login/ Register</a></div>
+                <div class="ps-block--user-header" id="current-account">
+                    <!--                            <div class="ps-block__left"><i class="icon-user"></i></div>-->
+                    <!--                            <div class="ps-block__right"><a href="my-account.html">Login</a><a href="my-account.html">Register</a></div>-->
+                </div>
+                <div id="current-logout">
+
                 </div>
             </div>
         </div>
@@ -1029,6 +1032,8 @@
     <script src="plugins/gmap3.min.js"></script>
     <!-- custom scripts-->
     <script src="js/main.js"></script>
+    <script src="js/information.js"></script>
+    <script src="js/login-register.js"></script>
 </body>
 
 

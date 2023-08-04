@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body onload="showAccountLogin()">
     <header class="header header--1" data-sticky="true">
         <div class="header__top">
             <div class="ps-container">
@@ -357,9 +357,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="ps-block--user-header">
-                            <div class="ps-block__left"><i class="icon-user"></i></div>
-                            <div class="ps-block__right"><a href="my-account.html">Login</a><a href="my-account.html">Register</a></div>
+                        <div class="ps-block--user-header" id="current-account">
+<!--                            <div class="ps-block__left"><i class="icon-user"></i></div>-->
+<!--                            <div class="ps-block__right"><a href="my-account.html">Login</a><a href="my-account.html">Register</a></div>-->
+                        </div>
+                        <div id="current-logout">
+
                         </div>
                     </div>
                 </div>
@@ -1366,6 +1369,8 @@
     <script src="plugins/gmap3.min.js"></script>
     <!-- custom scripts-->
     <script src="js/main.js"></script>
+    <script src="js/information.js"></script>
+    <script src="js/login-register.js"></script>
 </body>
 
 

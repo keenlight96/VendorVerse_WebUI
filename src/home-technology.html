@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="css/technology.css">
 </head>
 
-<body>
+<body onload="showAccountLogin()">
     <header class="header header--standard header--technology" data-sticky="true">
         <div class="header__top">
             <div class="container">
@@ -49,9 +49,12 @@
                             </div>
                         </li>
                         <li>
-                            <div class="ps-block--user-header">
-                                <div class="ps-block__left"><i class="icon-user"></i></div>
-                                <div class="ps-block__right"><a href="my-account.html">Login</a><a href="my-account.html">Register</a></div>
+                            <div class="ps-block--user-header" id="current-account">
+<!--                                <div class="ps-block__left"><i class="icon-user"></i></div>-->
+<!--                                <div class="ps-block__right"><a href="my-account.html">Login</a><a href="my-account.html">Register</a></div>-->
+                            </div>
+                            <div id="current-logout">
+
                             </div>
                         </li>
                     </ul>
@@ -1677,6 +1680,8 @@
     <script src="plugins/gmap3.min.js"></script>
     <!-- custom scripts-->
     <script src="js/main.js"></script>
+    <script src="js/information.js"></script>
+    <script src="js/login-register.js"></script>
 </body>
 
 

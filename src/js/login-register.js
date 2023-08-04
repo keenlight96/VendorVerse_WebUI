@@ -46,7 +46,7 @@ function login() {
         data: JSON.stringify(account),
         success: function (data) {
             console.log(data)
-            localStorage.setItem("token", "Bearer " + data.token);
+            localStorage.setItem("token","Bearer " + data.token);
             localStorage.setItem("user", JSON.stringify(data));
             if (data.role.name === "ROLE_VENDOR") {
                 location.href = "vendor-dashboard-free.html"
@@ -58,5 +58,30 @@ function login() {
             document.getElementById("message1").innerHTML = str;
         }
     })
+}
+function logout(){
+    localStorage.setItem("token", "");
+    localStorage.setItem("user", "");
+    location.href = "my-account.html"
+}
+function showAccountLogin(){
+    let str = ``;
+    let str2 = ``;
+    if(localStorage.getItem("token") === ""){
+        str += `<div class="ps-block__left"><i class="icon-user"></i></div>
+                            <div class="ps-block__right"><a href="my-account.html">Login</a>
+                            <a href="my-account.html">Register</a></div>`
+        // $("#current-account").html(str)
+    } else {
+       let user = JSON.parse(localStorage.getItem("user"))
+        console.log(user)
 
+                str += `<div class="ps-block__left"><img src="${user.avatar}" width="50" height="50"></div>
+                            <div class="ps-block__right"><a href="user-information.html"> ${user.username}</a>
+                            <a  onclick="logout()" style="cursor: pointer">Logout</a>
+                            </div>
+                            `
+
+    }
+    $("#current-account").html(str)
 }

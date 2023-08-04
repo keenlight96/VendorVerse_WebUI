@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="css/home-kids.css">
 </head>
 
-<body>
+<body onload="showAccountLogin()">
     <div class="ps-promotion-kids">
         <div class="container"><a href="#"><img src="img/promotions/home-kids/top.jpg" alt=""></a></div>
     </div>
@@ -171,9 +171,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="ps-block--user-header">
-                            <div class="ps-block__left"><i class="icon-user"></i></div>
-                            <div class="ps-block__right"><a href="my-account.html">Login</a><a href="my-account.html">Register</a></div>
+                        <div class="ps-block--user-header" id="current-account">
+                            <!--                            <div class="ps-block__left"><i class="icon-user"></i></div>-->
+                            <!--                            <div class="ps-block__right"><a href="my-account.html">Login</a><a href="my-account.html">Register</a></div>-->
+                        </div>
+                        <div id="current-logout">
+
                         </div>
                     </div>
                 </div>
@@ -776,7 +779,7 @@
                                         <div class="ps-block__item"><a href="shop-default.html"><img src="img/categories/home-kids/8.jpg" alt="#bag"><span>#bag</span></a><a href="shop-default.html"><img src="img/categories/home-kids/9.jpg" alt="#diapers"><span>#diapers</span></a><a href="shop-default.html"><img src="img/categories/home-kids/10.jpg" alt="#crib"><span>#crib</span></a><a href="shop-default.html"><img src="img/categories/home-kids/11.jpg" alt="#ointment"><span>#ointment</span></a><a href="shop-default.html"><img src="img/categories/home-kids/12.jpg" alt="#underwear"><span>#underwear</span></a><a href="shop-default.html"><img src="img/categories/home-kids/13.jpg" alt="#woolcap"><span>#woolcap</span></a><a href="shop-default.html"><img src="img/categories/home-kids/14.jpg" alt="#boys"><span>#boys</span></a><a href="shop-default.html"><img src="img/categories/home-kids/15.jpg" alt="#chair"><span>#chair</span></a><a href="shop-default.html"><img src="img/categories/home-kids/16.jpg" alt="#pregnancy"><span>#pregnancy</span></a>
                                         </div>
                                     </div>
-                                    <div class="ps-tab" id="tab-7">
+                                    <div class="ps-tab" id="tab-8">
                                         <div class="ps-block__item"><a href="shop-default.html"><img src="img/categories/home-kids/9.jpg" alt="#diapers"><span>#diapers</span></a><a href="shop-default.html"><img src="img/categories/home-kids/10.jpg" alt="#crib"><span>#crib</span></a><a href="shop-default.html"><img src="img/categories/home-kids/11.jpg" alt="#ointment"><span>#ointment</span></a><a href="shop-default.html"><img src="img/categories/home-kids/12.jpg" alt="#underwear"><span>#underwear</span></a><a href="shop-default.html"><img src="img/categories/home-kids/13.jpg" alt="#woolcap"><span>#woolcap</span></a><a href="shop-default.html"><img src="img/categories/home-kids/14.jpg" alt="#boys"><span>#boys</span></a><a href="shop-default.html"><img src="img/categories/home-kids/15.jpg" alt="#chair"><span>#chair</span></a><a href="shop-default.html"><img src="img/categories/home-kids/16.jpg" alt="#pregnancy"><span>#pregnancy</span></a>
                                         </div>
                                     </div>
@@ -1651,6 +1654,8 @@
     <script src="plugins/gmap3.min.js"></script>
     <!-- custom scripts-->
     <script src="js/main.js"></script>
+    <script src="js/information.js"></script>
+    <script src="js/login-register.js"></script>
 </body>
 
 

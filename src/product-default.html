@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body onload="showAccountLogin()">
     <header class="header header--product" data-sticky="true">
         <nav class="navigation">
             <div class="container">
@@ -253,9 +253,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="ps-block--user-header">
-                            <div class="ps-block__left"><i class="icon-user"></i></div>
-                            <div class="ps-block__right"><a href="my-account.html">Login</a><a href="my-account.html">Register</a></div>
+                        <div class="ps-block--user-header" id="current-account">
+                            <!--                            <div class="ps-block__left"><i class="icon-user"></i></div>-->
+                            <!--                            <div class="ps-block__right"><a href="my-account.html">Login</a><a href="my-account.html">Register</a></div>-->
+                        </div>
+                        <div id="current-logout">
+
                         </div>
                     </div>
                 </div>
@@ -1852,7 +1855,6 @@
             </div>
         </div>
     </div>
-
     <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="plugins/jquery.min.js"></script>
     <script src="plugins/nouislider/nouislider.min.js"></script>
     <script src="plugins/popper.min.js"></script>
@@ -1871,8 +1873,8 @@
     <script src="plugins/gmap3.min.js"></script>
     <!-- custom scripts-->
     <script src="js/main.js"></script>
-    <script src="js/review-comment.js"></script>
-
+    <script src="js/information.js"></script>
+    <script src="js/login-register.js"></script>
 </body>
 
 
