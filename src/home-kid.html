@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="css/home-kids.css">
 </head>
 
-<body>
+<body onload="showAccountLogin()">
     <div class="ps-promotion-kids">
         <div class="container"><a href="#"><img src="img/promotions/home-kids/top.jpg" alt=""></a></div>
     </div>
@@ -172,9 +172,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="ps-block--user-header">
-                            <div class="ps-block__left"><i class="icon-user"></i></div>
-                            <div class="ps-block__right"><a href="my-account.html">Login</a><a href="my-account.html">Register</a></div>
+                        <div class="ps-block--user-header" id="current-account">
+<!--                            <div class="ps-block__left"><i class="icon-user"></i></div>-->
+<!--                            <div class="ps-block__right"><a href="my-account.html">Login</a><a href="my-account.html">Register</a></div>-->
+                        </div>
+                        <div id="current-logout">
+
                         </div>
                     </div>
                 </div>
@@ -1630,6 +1633,8 @@
     <script src="plugins/gmap3.min.js"></script>
     <!-- custom scripts-->
     <script src="js/main.js"></script>
+    <script src="js/information.js"></script>
+    <script src="js/login-register.js"></script>
 </body>
 
 
