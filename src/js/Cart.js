@@ -68,7 +68,7 @@ function getAllCartDetail(idStatus) {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization':  token
+            'Authorization': token
         },
         url: "http://localhost:8080/billDetail/byStatus?idStatus=" + idStatus,
         success: function (data) {
@@ -83,11 +83,16 @@ function getAllCartDetail(idStatus) {
 // Thêm sản phẩm vào giỏ hàng
 function addBillDetail(id) {
     let token = localStorage.getItem("token");
-    let idProduct = $("#idProduct").val();
+    // let idProduct = $("#idProduct").val();
     let quantity = $("#quantity").val();
+    alert(quantity)
+    if (quantity == undefined) {
+        quantity = 1;
+    }
+    alert(quantity)
     let billDetail = {
         product: {
-            id: idProduct
+            id: id
         },
         quantity: quantity
     };
@@ -97,7 +102,7 @@ function addBillDetail(id) {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization':  token
+            'Authorization': token
         },
         url: "http://localhost:8080/billDetail/addBillDetail",
         data: JSON.stringify(billDetail),
@@ -119,7 +124,7 @@ function deleteProductByCart(idBillDetail) {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization':  token
+            'Authorization': token
         },
         url: "http://localhost:8080/billDetail/deleteProductByCart?idBillDetail=" + idBillDetail,
         success: function (data) {
@@ -172,7 +177,7 @@ function updateBillDetail(quantity, id) {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization':  token
+            'Authorization': token
         },
         url: "http://localhost:8080/billDetail/updateQuantityBillDetail",
         data: JSON.stringify(billDetailDto),
@@ -185,7 +190,7 @@ function updateBillDetail(quantity, id) {
     })
 }
 
-function showBill(bill){
+function showBill(bill) {
     localStorage.setItem("bill", JSON.stringify(bill));
     window.location.href = "shopping-cart-pay.html";
 }
