@@ -1,3 +1,8 @@
+function scrollToBottom() {
+    const chatMessages = document.getElementById('chat-content');
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
 
 function getSenderAndChatContent() {
     $.ajax({
@@ -9,8 +14,7 @@ function getSenderAndChatContent() {
         },
         url : "http://localhost:8080/account/current",
         success : function (data) {
-            showSender(data)
-            getChatContent()
+            showSenderAndGetReceivers(data)
         },
         error : function (error) {
             console.log(error);
@@ -18,18 +22,100 @@ function getSenderAndChatContent() {
     })
 }
 
-function showSender(sender) {
+function showSenderAndGetReceivers(sender) {
     $("#senderId").val(sender.id);
+    $.ajax({
+        type: "POST",
+        headers : {
+            "Authorization" : localStorage.getItem("token"),
+            "Accept" : "application/json",
+            "Content-Type" : "application/json"
+        },
+        url : "http://localhost:8080/account/receivers/" + sender.id,
+        success : function (data) {
+            showReceivers(data)
+        },
+        error : function (error) {
+            console.log(error);
+        }
+    })
+}
+
+function showReceivers(receivers) {
+    setReceiver(receivers[0].id);
+    let str = "";
+    for (const receiver of receivers) {
+        str += `
+            <a onclick="setReceiver(${receiver.id})" class="list-group-item list-group-item-action border-0">
+                <div class="d-flex align-items-start">
+                    <img src="${receiver.avatar}" class="rounded-circle mr-1"
+                         alt="" width="40" height="40">
+                    <div class="flex-grow-1 ml-3">
+                        ${receiver.username}
+                    </div>
+                </div>
+            </a>
+        `;
+    }
+    $("#receivers").html(str);
+}
+
+function setReceiver(id){
+    $("#receiverId").val(id);
+    let userId = JSON.parse(localStorage.getItem("user")).id;
+
+    let roomId = "/topic/hi/";
+    if (userId < id) {
+        roomId += userId + "_" + id;
+    } else {
+        roomId += id + "_" + userId;
+    }
+    forceDisconnect();
+    connect(roomId)
+    $.ajax({
+        type: "GET",
+        headers : {
+            "Authorization" : localStorage.getItem("token"),
+            "Accept" : "application/json",
+            "Content-Type" : "application/json"
+        },
+        url : "http://localhost:8080/account/receiver/" + id,
+        success : function (data) {
+            showReceiver(data)
+        },
+        error : function (error) {
+            console.log(error);
+        }
+    })
+
+    getChatContent();
+}
+
+function showReceiver(account) {
+    let str = `
+        <div class="position-relative">
+            <img src="${account.avatar}"
+                 class="rounded-circle mr-1" alt="" width="40" height="40">
+        </div>
+        <div class="flex-grow-1 pl-3">
+            <strong>${account.username}</strong>
+        </div>
+    `;
+    $("#receiverInfo").html(str);
+
 }
 
 function getChatContent() {
     let senderId = $("#senderId").val();
     let receiverId = $("#receiverId").val();
     let message = {
-        "sender" : {senderId},
-        "receiver" : {receiverId}
+        "sender" : {
+            "id" : senderId
+        },
+        "receiver" : {
+            "id" : receiverId
+        }
     };
-    console.log(message)
     $.ajax({
         type: "POST",
         headers : {
@@ -40,7 +126,6 @@ function getChatContent() {
         url : "http://localhost:8080/message/allBySenderAndReceiver",
         data : JSON.stringify(message),
         success : function (data) {
-            console.log(data);
             showChatContent(data)
         },
         error : function (error) {
@@ -83,6 +168,7 @@ function showChatContent(messages) {
             `
         }
         $("#chat-content").html(str);
+        scrollToBottom();
     }
 }
 
