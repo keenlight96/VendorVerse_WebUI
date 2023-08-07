@@ -27,6 +27,10 @@
     <link rel="stylesheet" href="plugins/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/market-place-1.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body onload="getAllVendorOrders()">
@@ -629,6 +633,8 @@
                                         <th>Total Price</th>
                                         <th>Status</th>
                                         <th>Information</th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody id="vendor-orders">
@@ -638,6 +644,55 @@
                         </div>
                     </div>
                 </div>
+
+
+
+                <!-- The Modal Bill Detail-->
+                <div class="modal" id="myModalBillDetail">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Bill Detail </h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <div class="table-responsive">
+                                    <table class="table ps-table ps-table--vendor">
+                                        <thead>
+                                        <tr>
+                                            <th>Category</th>
+                                            <th>Image</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="bill-detail">
+                                        <!--              <tr>-->
+                                        <!--                <th>098765432</th>-->
+                                        <!--                <td>Nov 4, 2019</td>-->
+                                        <!--                <td><a href="#">MS46891357</a></td>-->
+                                        <!--                <td></td>-->
+                                        <!--                <td>$00.00</td>-->
+                                        <!--              </tr>-->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
             </div>
         </div>
     </div>
@@ -1168,6 +1223,9 @@
     <script src="plugins/gmap3.min.js"></script>
     <!-- custom scripts-->
     <script src="js/main.js"></script>
+    <script src="js/view-detail.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
 </body>
 
 

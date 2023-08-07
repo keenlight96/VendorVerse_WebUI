@@ -140,13 +140,16 @@ function displayAllVendorOrders(bills) {
             }
 
             str += `
-                <td><a href="#">View Detail</a></td>
+                <td><a onclick="getBillDetailVendor(${bill})" data-toggle="modal" data-target="#myModalBillDetail">View Detail</a></td>
+                <td><a onclick="">Edit</a></td>
+                <td><a onclick="">Delete</a></td>
             </tr>
         `;
         }
     }
     $("#vendor-orders").html(str);
 }
+
 function showInfoInModal(billId) {
     $("#actionBillId").val(billId);
 }
@@ -187,4 +190,40 @@ function rejectOrder() {
             console.log(error);
         }
     })
+}
+
+function getBillDetailVendor(id) {
+
+    let token = localStorage.getItem("token");
+    $.ajax({
+        type: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        url: `http://localhost:8080/billDetail/getByBill/${id}`,
+        success: function (data) {
+            showBillDetailVendor(data)
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+}
+
+function showBillDetailVendor(billDetailVendor) {
+    let str = ``;
+    for (const bdd of billDetailVendor) {
+        str += `
+        <tr>
+              <th>${bdd.product.category.child}</th>
+              <td>${bdd.product.name}</td>
+              <td><img src="${bdd.image.image}"></td>
+              <td>${bdd.quantity}</td>
+              <td>${bdd.product.price}</td>
+              </tr>
+        `
+    }
+    document.getElementById("bill-detail").innerHTML = str;
 }

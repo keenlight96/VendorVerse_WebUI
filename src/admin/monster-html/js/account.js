@@ -27,11 +27,13 @@ function showAccountVendor(arrAccount) {
                                         <td>${arr.role.name}</td>
                                         <td>${arr.status.name}</td>
                                         <td>
-                                            <button class="btn  btn-success" onclick="">Product
+                                            <button class="btn  btn-success" onclick="getAllVendorProducts(${arr.id})" data-bs-toggle="modal"
+                                                    data-bs-target="#myProductOfVendor">Product
                                             </button>
                                         </td>
                                         <td>
-                                            <button class="btn  btn-success" onclick="">Bill
+                                            <button class="btn  btn-success" onclick="getAllBillVendor(${arr.id})" data-bs-toggle="modal"
+                                                    data-bs-target="#myBillVendor">Bill
                                             </button>
                                         </td>
                                         <td>
@@ -170,6 +172,83 @@ function removeVendor(id) {
     }
 }
 
+function getAllBillVendor(id) {
+    $.ajax({
+        type: "GET",
+        headers : {
+            "Authorization" : localStorage.getItem("token"),
+            "Accept" : "application/json",
+            "Content-Type" : "application/json"
+        },
+        url : `http://localhost:8080/bill/vendor/${id}`,
+        success : function (data) {
+            showBillVendor(data)
+        },
+        error : function (error) {
+            console.log(error);
+        }
+    })
+}
+
+function showBillVendor(bills) {
+    let str = ``;
+    for (const bill of bills) {
+        str += `<tr>
+                    <td>${bill.id}</td>
+                    <td>${bill.customer.username}</td>
+                    <td>${bill.customer.phoneNumber}</td>
+                    <td>${'$'+bill.total}</td>
+                    <td>${bill.status.name}</td>
+                </tr>
+        `
+    }
+    document.getElementById("detailBill-vendor").innerHTML = str;
+}
+
+
+function getAllVendorProducts(id) {
+    $.ajax({
+        type: "GET",
+        headers : {
+            "Authorization" : localStorage.getItem("token"),
+            "Accept" : "application/json",
+            "Content-Type" : "application/json"
+        },
+        url : `http://localhost:8080/product/vendor/${id}`,
+        success : function (data) {
+            displayAllVendorProducts(data)
+        },
+        error : function (error) {
+            console.log(error);
+        }
+    })
+}
+
+function displayAllVendorProducts(products) {
+    console.log(products)
+    let str = "";
+    for (const product of products) {
+        let image;
+        if (product.image == null)
+            image = "";
+        else
+            image = product.image.image;
+        str +=`
+            <tr>
+                                    <td>${product.id}</td>
+                                    <td>${product.name}</td>
+                                    <td><img src="${product.image.image}" style="width: 100px; height: 100px"></td>
+                                    <td>${product.quantity}</td>
+                                    <td>${'$'+product.price}</td>
+                                </tr>
+        `
+    }
+    $("#product-vendor").html(str);
+}
+
+
+
+
 
 // function getRoleUpdate() {
 //     $.ajax({
@@ -260,7 +339,8 @@ function showAccountCustomer(arrCustomer) {
                                         <td>${arr.role.name}</td>
                                         <td>${arr.status.name}</td>
                                         <td>
-                                            <button class="btn  btn-success" onclick="">Bill
+                                            <button class="btn  btn-success" onclick="getAllBillCustomer(${arr.id})" data-bs-toggle="modal"
+                                                    data-bs-target="#myBillCustomer">Bill
                                             </button>
                                         </td>
                                         <td>
@@ -397,3 +477,38 @@ function removeCustomer(id) {
         })
     }
 }
+
+function getAllBillCustomer(id) {
+    $.ajax({
+        type: "GET",
+        headers : {
+            "Authorization" : localStorage.getItem("token"),
+            "Accept" : "application/json",
+            "Content-Type" : "application/json"
+        },
+        url : `http://localhost:8080/bill/customer/${id}`,
+        success : function (data) {
+            showBillCustomer(data)
+        },
+        error : function (error) {
+            console.log(error);
+        }
+    })
+}
+
+function showBillCustomer(bills) {
+    let str = ``;
+    for (const bill of bills) {
+        str += `<tr>
+                                                    <td>${bill.id}</td>
+                                                    <td>${bill.vendor.username}</td>
+                                                    <td>${bill.vendor.phoneNumber}</td>
+                                                    <td>${'$'+bill.total}</td>
+                                                    <td>${bill.status.name}</td>
+                                                </tr>
+        `
+    }
+    document.getElementById("detailBill-customer").innerHTML = str;
+}
+
+
