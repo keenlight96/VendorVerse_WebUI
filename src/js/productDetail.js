@@ -57,6 +57,7 @@ function showProductDetail(productDetailDTO) {
                   <p>Content: ${review.content}</p>
                </div>`
     }
+    let show_button = `<a class="ps-btn ps-btn--black" href="#" onclick="addBillDetail('${productDetailDTO.id}')">Add to cart</a>`
     $("#image1").html(str);
     $("#image2").html(str);
     $("#productName").html(productDetailDTO.name);
@@ -68,6 +69,7 @@ function showProductDetail(productDetailDTO) {
     $("#product-description").html(str1);
     $("#tab-3").html(str2);
     $("#review-product").html(str4);
+    $("#button-add-cart").html(show_button);
     // checkReview(productDetailDTO.id);
 }
 function checkReview(productId){
