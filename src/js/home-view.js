@@ -29,7 +29,7 @@ function showProduct2(productDTOPage) {
 <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 " >
         <div class="ps-product--horizontal">
                                 <div class="ps-product__thumbnail"><a href="product-default.html"><img src="${p.image.image}" alt="" width="250" height="100" /></a></div>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">${p.name}</a>
+                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html" onclick="getProductDetailDTO(${p.id})">${p.name}</a>
                                     <p class="ps-product__price">${p.price}$</p>
                                 </div>
                             </div>
