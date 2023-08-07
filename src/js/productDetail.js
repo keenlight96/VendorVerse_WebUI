@@ -118,7 +118,7 @@ function formReview(productId){
 function saveReview(){
     let productId = $("#product-id").val();
     let content = $("#content-review").val();
-    let rating = parseInt($('.br-selected.br-current').attr('data-rating-value'));
+    let rating = parseInt($('.br-selected.br-current').attr('data-rating-text'));
     let review = {
         product:{
             id:productId
@@ -136,7 +136,8 @@ function saveReview(){
         url: "http://localhost:8080/review",
         data: JSON.stringify(review),
         success: function (data) {
-
+            window.location.href = "product-default.html";
+           getProductDetailDTO(productId)
         },
         error: function (error) {
             console.log(error);

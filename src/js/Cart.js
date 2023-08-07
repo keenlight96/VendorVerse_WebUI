@@ -85,11 +85,11 @@ function addBillDetail(id) {
     let token = localStorage.getItem("token");
     // let idProduct = $("#idProduct").val();
     let quantity = $("#quantity").val();
-    alert(quantity)
+
     if (quantity == undefined) {
         quantity = 1;
     }
-    alert(quantity)
+
     let billDetail = {
         product: {
             id: id
