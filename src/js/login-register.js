@@ -76,7 +76,7 @@ function showAccountLogin(){
        let user = JSON.parse(localStorage.getItem("user"))
         console.log(user)
 
-                str += `<div class="ps-block__left"><img src="${user.avatar}" width="50" height="50"></div>
+                str += `<div class="ps-block__left"><img src="${user.avatar}" width="100" height="50" "></div>
                             <div class="ps-block__right"><a href="user-information.html"> ${user.username}</a>
                             <a  onclick="logout()" style="cursor: pointer">Logout</a>
                             </div>

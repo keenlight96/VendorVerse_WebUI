@@ -5,8 +5,7 @@ function getAllProduct(page) {
         type: "POST",
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': localStorage.getItem("token")
+            'Content-Type': 'application/json'
         },
         url: "http://localhost:8080/product/shop/?page=" + page,
 
