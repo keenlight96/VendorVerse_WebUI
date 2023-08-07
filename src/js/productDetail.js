@@ -4,7 +4,6 @@ function getProductDetailDTO(productId) {
     $.ajax({
         type: "POST",
         headers: {
-            "Authorization": localStorage.getItem("token"),
             "Accept": "application/json",
             "Content-Type": "application/json"
         },
