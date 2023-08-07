@@ -1,6 +1,7 @@
-getProductDTOByVendor(2, 0)
+getProductDTOByVendor(0)
 
-function getProductDTOByVendor(vendorId, page) {
+function getProductDTOByVendor(page) {
+    let vendorId = localStorage.getItem("vendorId");
     let token = localStorage.getItem("token");
     $.ajax({
         type: "POST",
@@ -21,11 +22,14 @@ function getProductDTOByVendor(vendorId, page) {
     })
 }
 
+function clickOnProduct(id) {
+    localStorage.setItem("productId", id);
+}
+
 function showProduct(productDTOPage) {
-    console.log(productDTOPage)
     let str = "";
     for (const pd of productDTOPage.content) {
-
+        console.log(pd)
         str += `
         <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-6 ">
              <div class="ps-product">
@@ -38,10 +42,10 @@ function showProduct(productDTOPage) {
                        </ul>
                    </div>
                    <div class="ps-product__container"><a class="ps-product__vendor" href="#">${pd.account.username}</a>
-                       <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">${pd.name}</a>
+                       <div class="ps-product__content"><a class="ps-product__title" href="product-default.html" onclick="clickOnProduct(${pd.id})">${pd.name}</a>
                             <p class="ps-product__price">${'Price: $' + pd.price}</p>
                        </div>
-                       <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">${pd.name}</a>
+                       <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html" onclick="clickOnProduct(${pd.id})">${pd.name}</a>
                             <p class="ps-product__price">${'Price: $' + pd.price}</p>
                        </div>
                    </div>

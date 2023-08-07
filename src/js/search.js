@@ -11,7 +11,7 @@ function getAllProductByName(page, document) {
             "Accept": "application/json",
             "Content-Type": "application/json"
         },
-        url: "http://localhost:8080/product/searchByProductName?page=" + page + "&&name=" + document,
+        url: "http://localhost:8080/product/searchByProductName?page=" + page + "&name=" + document,
         success: function (data) {
             console.log(data)
             window.location.href = "index-3.html";

@@ -1,6 +1,6 @@
-getProductDetailDTO(2)
-
-function getProductDetailDTO(productId) {
+getProductDetailDTO()
+function getProductDetailDTO() {
+    let productId = localStorage.getItem("productId");
     $.ajax({
         type: "POST",
         headers: {
@@ -61,7 +61,11 @@ function showProductDetail(productDetailDTO) {
     $("#image2").html(str);
     $("#productName").html(productDetailDTO.name);
     $("#viewNumber").html('( ' + productDetailDTO.reviews.length + ' views )');
-    $("#vendorName").html(productDetailDTO.account.username);
+    $("#vendorName").html(`
+        <p>Sold By:<a href="shop-default.html" onclick="clickOnVendor(${productDetailDTO.account.id})"><strong>${productDetailDTO.account.username} </strong></a></p>
+    `);
+
+
     $("#productPrice").html('$' + productDetailDTO.price);
     $("#product-categori").html(str3);
     $("#remaining-quantity").html('( Remaining quantity : ' + productDetailDTO.quantity + ' )');
@@ -70,6 +74,10 @@ function showProductDetail(productDetailDTO) {
     $("#review-product").html(str4);
     $("#button-add-cart").html(show_button);
     // checkReview(productDetailDTO.id);
+}
+
+function clickOnVendor(id) {
+    localStorage.setItem("vendorId", id);
 }
 function checkReview(productId){
     $.ajax({

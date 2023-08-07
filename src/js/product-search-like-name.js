@@ -7,6 +7,10 @@ function getLocal() {
     showAllProduct(productDTOPage, documentText);
 }
 
+function clickOnProduct(id) {
+    localStorage.setItem("productId", id);
+}
+
 function showAllProduct(productDTOPage, documentText) {
     let str = "";
 
@@ -23,10 +27,10 @@ function showAllProduct(productDTOPage, documentText) {
                        </ul>
                    </div>
                    <div class="ps-product__container"><a class="ps-product__vendor" href="#">${pd.account.username}</a>
-                       <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">${pd.name}</a>
+                       <div class="ps-product__content"><a class="ps-product__title" href="product-default.html" onclick="clickOnProduct(${pd.id})">${pd.name}</a>
                             <p class="ps-product__price">${'Price: $' + pd.price}</p>
                        </div>
-                       <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">${pd.name}</a>
+                       <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html" onclick="clickOnProduct(${pd.id})">${pd.name}</a>
                             <p class="ps-product__price">${'Price: $' + pd.price}</p>
                        </div>
                    </div>

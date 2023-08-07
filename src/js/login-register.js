@@ -49,9 +49,9 @@ function login() {
             localStorage.setItem("token","Bearer " + data.token);
             localStorage.setItem("user", JSON.stringify(data));
             if (data.role.name === "ROLE_VENDOR") {
-                location.href = "vendor-dashboard-free.html"
+                location.href = "vendor-dashboard-products.html"
             } else if (data.role.name === "ROLE_CUSTOMER") {
-                location.href = "home-marketplace.html"
+                location.href = "index.html"
             }
         },
         error: function (err) {
