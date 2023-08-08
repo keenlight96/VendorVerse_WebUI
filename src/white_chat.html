@@ -7,6 +7,7 @@
     <title>white chat - Bootdey.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style type="text/css">
         body {
             margin-top: 10px;
@@ -59,14 +60,39 @@
         .border-top {
             border-top: 1px solid #dee2e6 !important;
         }
+        .ps-btn, button.ps-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+            color: #000;
+            border: none;
+            font-weight: 600;
+            border-radius: 4px;
+            background-color: #fcb800;
+            transition: all .4s ease;
+            cursor: pointer;
+        }
     </style>
     <script src="chatting/stomp.js"></script>
     <script src="chatting/chat.js"></script>
+<!--    <link rel="stylesheet" href="css/style.css">-->
 </head>
-<body onload="showAccountLogin(),getSenderAndChatContent()">
+<body onload="getSenderAndChatContent()">
 <main class="content">
     <div class="container p-0">
-        <h4 class="h4 mb-3">Messages</h4>
+        <div class="row">
+            <div class="col-2">
+                <h4 class="h4 mb-3">Messages</h4>
+            </div>
+            <div class="col-8"></div>
+            <div class="col-2">
+                <button class="ps-btn" onclick="backToHome()">Back to Home</button>
+            </div>
+        </div>
+
         <div class="card">
             <div class="row g-0">
                 <div class="col-12 col-lg-5 col-xl-3 border-right">
@@ -164,8 +190,6 @@
                         <div class="input-group">
                             <input type="text" id="senderId" hidden="hidden">
                             <input type="text" id="receiverId" hidden="hidden">
-                            <input type="text" id="roomCode1" hidden="hidden" value="2_1">
-                            <input type="text" id="roomCode2" hidden="hidden" value="1_2">
 
                             <input type="text" id="textMessage" class="form-control" placeholder="Type your message">
                             <button id="send" class="btn btn-primary">Send</button>
@@ -180,19 +204,14 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="chatting/app.js"></script>
 <script type="text/javascript">
-    // function ReLoadImages(){
-    //     $('img[data-lazysrc]').each( function(){
-    //             //* set the img src from data-src
-    //             $( this ).attr( 'src', $( this ).attr( 'data-lazysrc' ) );
-    //         }
-    //     );
-    // }
-    //
-    // document.addEventListener('readystatechange', event => {
-    //     if (event.target.readyState === "complete") {  //or at "complete" if you want it to execute in the most last state of window.
-    //         ReLoadImages();
-    //     }
-    // });
+function backToHome() {
+    let userId = JSON.parse(localStorage.getItem("user")).role.id;
+    if (userId == 1) {
+        location.href = "admin/monster-html/vendor.html";
+    } else {
+        location.href = "index.html";
+    }
+}
 </script>
 </body>
 </html>

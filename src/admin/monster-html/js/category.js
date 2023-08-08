@@ -1,4 +1,5 @@
 function getAllCategory() {
+    console.log(1)
     $.ajax({
         type: "GET",
         headers: {
@@ -7,6 +8,7 @@ function getAllCategory() {
         },
         url: `http://localhost:8080/category`,
         success: function (data) {
+            console.log(data)
             showCategory(data)
         }
     })

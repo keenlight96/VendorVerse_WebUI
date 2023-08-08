@@ -29,6 +29,35 @@ function showInfo2(account) {
     $('#birthdayEdit').val(account.birthday);
     $('#phoneNumberEdit').val(account.phoneNumber);
     $('#roleEdit').val(account.role.name);
+
+    let str = `
+        <img src="${account.avatar}" alt=""/>
+        <figure>
+            <figcaption>${account.username}</figcaption>
+        </figure>
+    `;
+    $("#userInfo").html(str);
+
+    let str2 = `
+        <ul>
+            <li class="active"><a href="#"><i class="icon-user"></i> Account Information</a></li>
+            <li><a href="white_chat.html"><i class="icon-mailbox-full"></i> Messages</a></li>
+    `;
+
+    if (account.role.id == 2) {
+        str2 += `<li><a href="vendor-dashboard-products.html"><i class="icon-papers"></i> My Shop</a></li>`;
+    } else {
+        str2 += `<li><a href="customer-invoice.html"><i class="icon-papers"></i> Invoices</a></li>`;
+    }
+    str2 += `
+            <li><a href="#"><i class="icon-map-marker"></i> Address</a></li>
+            <li><a href="#"><i class="icon-store"></i> Recent Viewed Product</a></li>
+            <li><a href="#"><i class="icon-heart"></i> Wishlist</a></li>
+            <li><a href="#" onclick="logout()"><i class="icon-power-switch" ></i>Logout</a></li>
+        </ul>
+    `;
+
+    $("#vendorOrCustomer").html(str2);
 }
 
 

@@ -37,7 +37,7 @@ function login() {
         username: username,
         password: password
     };
-    let str = `<p>Account isn't exist</p>`
+    let str = `<p>Wrong username or password</p>`
     console.log(account)
     $.ajax({
         type: "Post",
@@ -52,6 +52,8 @@ function login() {
                 location.href = "vendor-dashboard-products.html"
             } else if (data.role.name === "ROLE_CUSTOMER") {
                 location.href = "index.html"
+            } else {
+                location.href = "admin/monster-html/vendor.html";
             }
         },
         error: function (err) {

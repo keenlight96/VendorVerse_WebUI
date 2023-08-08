@@ -69,11 +69,70 @@ function showProduct(productDTOPage) {
     }
     str1 += `</ul>`;
 
+    let str2 = `
+        <p>VENDOR: <strong>${productDTOPage.content[0].account.username}</strong></p> 
+        <a class="ps-btn" onclick="chatToVendor(${productDTOPage.content[0].account.id})">Send Message</a>
+    `;
+
 
     document.getElementById("numberProducts").innerHTML = productDTOPage.totalElements;
     document.getElementById("showProduct").innerHTML = str;
     document.getElementById("pageable").innerHTML = str1;
 
+    $("#sellerChat").html(str2);
+
+}
+
+function chatToVendor(id) {
+    localStorage.setItem("targetChat", id);
+    let senderId = JSON.parse(localStorage.getItem("user")).id;
+    let receiverId = id;
+    let message = {
+        "sender" : {
+            "id" : senderId
+        },
+        "receiver" : {
+            "id" : receiverId
+        }
+    };
+    $.ajax({
+        type: "POST",
+        headers : {
+            "Authorization" : localStorage.getItem("token"),
+            "Accept" : "application/json",
+            "Content-Type" : "application/json"
+        },
+        url : "http://localhost:8080/message/allBySenderAndReceiver",
+        data : JSON.stringify(message),
+        success : function (data) {
+            if (data[0] == null) {
+                hiMessage(senderId, receiverId);
+            } else {
+                location.href = "white_chat.html";
+            }
+        },
+        error : function (error) {
+            console.log(error);
+        }
+    })
+}
+
+function hiMessage(senderId, receiverId) {
+    $.ajax({
+        type: "POST",
+        headers : {
+            "Authorization" : localStorage.getItem("token"),
+            "Accept" : "application/json",
+            "Content-Type" : "application/json"
+        },
+        url : "http://localhost:8080/message/hi/" + senderId + "/" + receiverId,
+        success : function () {
+            location.href = "white_chat.html";
+        },
+        error : function (error) {
+            console.log(error);
+        }
+    })
 }
 
 

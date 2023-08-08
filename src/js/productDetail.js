@@ -121,13 +121,18 @@ function formReview(productId){
                                                 <div class="form-group submit">
                                                     <button class="ps-btn" onclick="saveReview()">Submit Review</button>
                                                 </div>
-                                            `
+                                            `;
+}
+
+function chooseRating(rate) {
+    localStorage.setItem("rating", rate);
 }
 
 function saveReview(){
     let productId = $("#product-id").val();
     let content = $("#content-review").val();
-    let rating = parseInt($('.br-selected.br-current').attr('data-rating-text'));
+    let rating = parseInt(localStorage.getItem("rating"));
+    localStorage.setItem("rating", "5");
     let review = {
         product:{
             id:productId
