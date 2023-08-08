@@ -1,4 +1,5 @@
 getProductDetailDTO()
+
 function getProductDetailDTO() {
     let productId = localStorage.getItem("productId");
     $.ajax({
@@ -20,6 +21,7 @@ function getProductDetailDTO() {
 }
 
 function showProductDetail(productDetailDTO) {
+    console.log(productDetailDTO)
 
     let str = ``;
     for (const image of productDetailDTO.images) {
@@ -48,14 +50,27 @@ function showProductDetail(productDetailDTO) {
         for (let i = 0; i < 5; i++) {
             if (i < review.rating) {
                 str4 += `<option value="1"></option>`
-            }else {
-                str4+= `<option value="2"></option>`
+            } else {
+                str4 += `<option value="2"></option>`
             }
         }
         str4 += ` </select>
                   <p>Content: ${review.content}</p>
                </div>`
     }
+
+    let str5 = `  <select class="ps-rating" data-read-only="true">
+                           <option value="1"></option>
+    `
+    for (let i = 1; i < 5; i++) {
+        if (i < productDetailDTO.avgRating -1) {
+            str5 += `<option value="1"></option>`
+        }else {
+            str5 += `<option value="2"></option>`
+        }
+    }
+
+    str5 += `</select>`
     let show_button = `<a class="ps-btn ps-btn--black" href="#" onclick="addBillDetail('${productDetailDTO.id}')">Add to cart</a>`
     $("#image1").html(str);
     $("#image2").html(str);
@@ -73,13 +88,18 @@ function showProductDetail(productDetailDTO) {
     $("#tab-3").html(str2);
     $("#review-product").html(str4);
     $("#button-add-cart").html(show_button);
+    $("#rating-review").html(productDetailDTO.avgRating);
+    $("#number-review").html(productDetailDTO.reviews.length);
+    $(".avgReview").html(str5);
+
     // checkReview(productDetailDTO.id);
 }
 
 function clickOnVendor(id) {
     localStorage.setItem("vendorId", id);
 }
-function checkReview(productId){
+
+function checkReview(productId) {
     $.ajax({
         type: "POST",
         headers: {
@@ -90,7 +110,7 @@ function checkReview(productId){
         url: "http://localhost:8080/product/checkReview?productId=" + productId,
         success: function (data) {
 
-            if (data == false){
+            if (data == false) {
                 formReview(productId)
             }
         },
@@ -99,7 +119,8 @@ function checkReview(productId){
         }
     })
 }
-function formReview(productId){
+
+function formReview(productId) {
     document.getElementById("form-review").innerHTML = `        
                                           
                                                 <h4>Submit Your Review</h4>
@@ -128,17 +149,17 @@ function chooseRating(rate) {
     localStorage.setItem("rating", rate);
 }
 
-function saveReview(){
+function saveReview() {
     let productId = $("#product-id").val();
     let content = $("#content-review").val();
     let rating = parseInt(localStorage.getItem("rating"));
     localStorage.setItem("rating", "5");
     let review = {
-        product:{
-            id:productId
+        product: {
+            id: productId
         },
         content: content,
-        rating:rating
+        rating: rating
     }
     $.ajax({
         type: "POST",
@@ -151,7 +172,7 @@ function saveReview(){
         data: JSON.stringify(review),
         success: function (data) {
             window.location.href = "product-default.html";
-           getProductDetailDTO(productId)
+            getProductDetailDTO(productId)
         },
         error: function (error) {
             console.log(error);
