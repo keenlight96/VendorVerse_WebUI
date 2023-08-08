@@ -42,7 +42,13 @@ function showSenderAndGetReceivers(sender) {
 }
 
 function showReceivers(receivers) {
-    setReceiver(receivers[0].id);
+    let targetChat = localStorage.getItem("targetChat");
+    if (targetChat == 0 || targetChat == null) {
+        setReceiver(receivers[0].id);
+    } else {
+        setReceiver(targetChat);
+        localStorage.setItem("targetChat", "0");
+    }
     let str = "";
     for (const receiver of receivers) {
         str += `
@@ -144,7 +150,6 @@ function showChatContent(messages) {
                     <div>
                         <img src="${message.sender.avatar}"
                              class="rounded-circle mr-1" alt="" width="40" height="40">
-                        <div class="text-muted small text-nowrap mt-2">2:33 am</div>
                     </div>
                     <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
                         <div class="font-weight-bold mb-1">You</div>
@@ -158,7 +163,6 @@ function showChatContent(messages) {
                     <div>
                         <img src="${message.sender.avatar}"
                              class="rounded-circle mr-1" alt="" width="40" height="40">
-                        <div class="text-muted small text-nowrap mt-1">12:34</div>
                     </div>
                     <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
                         <div class="font-weight-bold mb-1">${message.sender.username}</div>
