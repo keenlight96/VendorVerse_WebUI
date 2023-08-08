@@ -43,8 +43,6 @@ function showAllProduct(productDTOPage, documentText) {
         str1 += `<li><a  onclick="getAllProductByName('${productDTOPage.number - 1}','${documentText}')"><i class="icon-chevron-left"></i>Back Page</a></li>`
 
     }
-    alert(productDTOPage.number - 1)
-    alert(documentText)
     for (let i = 0; i < productDTOPage.totalPages; i++) {
         if (productDTOPage.number == i) {
             str1 += `<li class="active"><a href="#" >${productDTOPage.number + 1}</a></li>`
