@@ -1,16 +1,16 @@
 function getAllVendorProducts(pageNumber) {
     $.ajax({
         type: "GET",
-        headers : {
-            "Authorization" : localStorage.getItem("token"),
-            "Accept" : "application/json",
-            "Content-Type" : "application/json"
+        headers: {
+            "Authorization": localStorage.getItem("token"),
+            "Accept": "application/json",
+            "Content-Type": "application/json"
         },
-        url : "http://localhost:8080/product/vendor?page="+pageNumber,
-        success : function (data) {
+        url: "http://localhost:8080/product/vendor?page=" + pageNumber,
+        success: function (data) {
             displayAllVendorProducts(data)
         },
-        error : function (error) {
+        error: function (error) {
             console.log(error);
         }
     })
@@ -29,7 +29,7 @@ function displayAllVendorProducts(page) {
             image = "";
         else
             image = product.image.image;
-        str +=`
+        str += `
             <tr>
                 <td>${product.id}</td>
                 <td><img src="${image}" alt=""></td>
@@ -38,6 +38,8 @@ function displayAllVendorProducts(page) {
                 <td>$ ${product.price}</td>
                 <td>${product.sold}</td>
                 <td>$ ${product.commission}</td>
+                <td><button class="btn btn-warning" onclick='showEdit(${JSON.stringify(product)})'>Edit</button></td>
+                <td><button class="btn btn-danger" onclick='deleteProduct(${product.id})'>Delete</button></td>
             </tr>
         `
     }
@@ -153,21 +155,22 @@ function displayAllVendorOrders(bills) {
 function showInfoInModal(billId) {
     $("#actionBillId").val(billId);
 }
+
 function acceptOrder() {
     let billId = $("#actionBillId").val();
     console.log(billId)
     $.ajax({
         type: "POST",
-        headers : {
-            "Authorization" : localStorage.getItem("token"),
-            "Accept" : "application/json",
-            "Content-Type" : "application/json"
+        headers: {
+            "Authorization": localStorage.getItem("token"),
+            "Accept": "application/json",
+            "Content-Type": "application/json"
         },
-        url : "http://localhost:8080/bill/vendor/accept/" + billId,
-        success : function () {
+        url: "http://localhost:8080/bill/vendor/accept/" + billId,
+        success: function () {
             getAllVendorOrders()
         },
-        error : function (error) {
+        error: function (error) {
             console.log(error);
         }
     })
@@ -177,16 +180,16 @@ function rejectOrder() {
     let billId = $("#actionBillId").val();
     $.ajax({
         type: "POST",
-        headers : {
-            "Authorization" : localStorage.getItem("token"),
-            "Accept" : "application/json",
-            "Content-Type" : "application/json"
+        headers: {
+            "Authorization": localStorage.getItem("token"),
+            "Accept": "application/json",
+            "Content-Type": "application/json"
         },
-        url : "http://localhost:8080/bill/vendor/reject/" + billId,
-        success : function () {
+        url: "http://localhost:8080/bill/vendor/reject/" + billId,
+        success: function () {
             getAllVendorOrders()
         },
-        error : function (error) {
+        error: function (error) {
             console.log(error);
         }
     })

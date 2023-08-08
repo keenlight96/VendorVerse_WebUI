@@ -1,7 +1,6 @@
 getAllBill(2)
 function getAllBill(idStatus) {
     let token = localStorage.getItem("token");
-    console.log(token)
     $.ajax({
         type: "POST",
         headers: {
@@ -11,8 +10,7 @@ function getAllBill(idStatus) {
         },
         url: "http://localhost:8080/billDetail/byStatus?idStatus=" + idStatus,
         success: function (data) {
-            console.log(data)
-            showBill(data);
+            showBillByStatus(data);
         },
         error: function (err) {
             console.log(err);
@@ -20,11 +18,13 @@ function getAllBill(idStatus) {
     })
 }
 
-function showBill(billDto) {
+function showBillByStatus(billDto) {
     let str = ``;
+
     for (let i = 0; i < billDto.bills.length; i++) {
+        let bill = JSON.stringify(billDto.bills[i]);
         str += `<tr>
-                    <td><a data-bs-toggle="modal" data-bs-target="#myModal"  onclick='getBillDetailDto(${JSON.stringify(billDto.bills[i])})'>${billDto.bills[i].id}</a></td>
+                    <td><a data-bs-toggle="modal" data-bs-target="#myModal"  onclick='getBillDetailDto(`+bill+`)'>${billDto.bills[i].id}</a></td>
                     <td>${billDto.bills[i].vendor.username}</td>
                     <td>${billDto.bills[i].date}</td>
                     <td>${`$` + billDto.bills[i].total}</td>
@@ -36,14 +36,12 @@ function showBill(billDto) {
 }
 
 function getBillDetailDto(bill) {
-
-    let token = localStorage.getItem("token");
     $.ajax({
         type: "POST",
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': token
+            'Authorization': localStorage.getItem("token")
         },
         url: "http://localhost:8080/billDetail/getByBill",
         data: JSON.stringify(bill),

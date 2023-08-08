@@ -50,13 +50,16 @@ function showCart(billDto) {
             </tr>
             <tr>
                 <th colspan="3"></th>
-                <th><button class="p-2 ps-btn" onclick='showBill(${JSON.stringify(billDto.bills[i])})'>Pay The Bill</button></th>
+                <th><a href="shopping-cart-pay.html" class="p-2 ps-btn" onclick='showBill(${JSON.stringify(billDto.bills[i])})'>Pay The Bill</a></th>
            
             </tr>
             `
 
     }
-    document.getElementById("showCart").innerHTML = str;
+    let obj = document.getElementById("showCart")
+    if (obj != null) {
+        obj.innerHTML = str;
+    }
 }
 
 
@@ -192,6 +195,6 @@ function updateBillDetail(quantity, id) {
 
 function showBill(bill) {
     localStorage.setItem("bill", JSON.stringify(bill));
-    window.location.href = "shopping-cart-pay.html";
+    // window.location.href = "shopping-cart-pay.html";
 }
 

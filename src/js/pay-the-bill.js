@@ -52,7 +52,6 @@ function getBillDetailByBill() {
 }
 
 function payTheBill(bill) {
-    console.log(bill)
     if (confirm("Would you like to pay the bill with the amount: $" + bill.total)) {
         let token = localStorage.getItem("token");
         $.ajax({
